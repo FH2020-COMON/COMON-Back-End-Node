@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "npx pm2 dist/app",
-    "stop": "npx pm2 stop dist/app"
+    "log": "npx pm2 log",
+    "start": "npx pm2 start dist/bin",
+    "stop": "npx pm2 stop dist/bin",
+    "copy-files": "npx copyfiles -f ./src/bin/*.pem ./dist/bin/"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,7 @@
   },
   "homepage": "https://github.com/FH2020-COMON/COMON-Back-End-Node#readme",
   "dependencies": {
+    "@types/socket.io": "^2.1.11",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
@@ -29,10 +32,9 @@
     "mysql2": "^2.2.5",
     "node": "^15.3.0",
     "nodemon": "^2.0.6",
-    "pm2": "^4.5.0",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0",
-    "socket.io": "^3.0.3",
+    "socket.io": "^2.3.0",
     "typescript": "^4.1.2"
   },
   "devDependencies": {
@@ -42,6 +44,8 @@
     "@types/express": "^4.17.9",
     "@types/express-session": "^1.17.3",
     "@types/morgan": "^1.9.2",
-    "@types/node": "^14.14.10"
+    "@types/node": "^14.14.10",
+    "copyfiles": "^2.4.1",
+    "pm2": "^4.5.0"
   }
 }

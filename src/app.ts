@@ -27,6 +27,4 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   res.end();
 });
 
-const server = app.listen(app.get("port"), () => {
-  console.log("server on ", app.get("port"));
-});
+export default app;
