@@ -3,7 +3,7 @@ FROM node:12
 COPY package*.json ./
 COPY tsconfig.json ./tsconfig.json  
 
-RUN npm i
+RUN npm install
 
 COPY src ./src
 
