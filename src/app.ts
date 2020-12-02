@@ -10,7 +10,7 @@ const app: express.Application = express();
 
 dotenv.config({ path: path.join(__dirname, "../.env")});
 
-app.set("port", "8005");
+app.set("port", process.env.PORT || "3000");
 app.set("view engine", "html");
 
 app.use(morgan("combined"));
@@ -21,7 +21,7 @@ app.use(session({
   secret: process.env.COOKIE_SECRET!,
   resave: false,
   saveUninitialized: false
-}));
+}));  
 
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.end();
