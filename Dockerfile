@@ -2,7 +2,7 @@ FROM node:12
 
 COPY package*.json ./
 
-Run npm i
+RUN npm i
 
 COPY src ./src
 COPY tsconfig.json ./tsconfig.json
