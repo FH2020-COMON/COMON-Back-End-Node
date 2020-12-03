@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import * as dotenv from "dotenv";
+import cors from "cors";
 
 const app: express.Application = express();
 
@@ -23,8 +24,10 @@ app.use(session({
   saveUninitialized: false
 }));  
 
-app.use((req: Request, res: Response, next: NextFunction) => {
-  res.end();
+app.use(cors());
+
+app.get("/", (req, res, next) =>{
+  res.send("hello");
 });
 
 export default app;
