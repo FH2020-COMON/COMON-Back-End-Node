@@ -2,6 +2,7 @@ FROM node:12
 
 COPY package*.json ./
 COPY tsconfig.json ./tsconfig.json  
+COPY .env ./.env
 
 RUN npm install
 
