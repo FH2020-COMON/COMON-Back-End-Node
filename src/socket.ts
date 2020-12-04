@@ -5,7 +5,7 @@ import { Application } from "express";
 import { BusinessLogic, NextFunction } from "./BusinessLogic";
 
 const webSocket = (server: Server, app: Application, verifyToken: BusinessLogic) => {
-  const io = socketIO(server);
+  const io: socketIO.Server = socketIO(server);
   io.sockets.on('connection', (socket: Socket) => {
     app.set("io", io);
 
