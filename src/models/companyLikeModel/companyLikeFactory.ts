@@ -19,8 +19,8 @@ const CompanyLikeFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor
       allowNull: false,
     }
   };
-  const Company = sequelize.define<CompanyLikeInterface, CompanyLikeAttributes>("company_like", attributes);
-  return Company;
+  const CompanyLike = sequelize.define<CompanyLikeInterface, CompanyLikeAttributes>("company_like", attributes);
+  return CompanyLike;
 }
 
 export default CompanyLikeFactory;
