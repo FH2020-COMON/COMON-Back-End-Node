@@ -21,6 +21,11 @@ const ChatFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor<ChatIn
     chat: {
       type: Sequelize.TEXT,
       allowNull: false
+    },
+    createdAt: {
+      type: Sequelize.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.NOW,
     }
   };
   const Chat = sequelize.define<ChatInterface, ChatAttributes>("chats", attributes);

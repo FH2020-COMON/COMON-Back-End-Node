@@ -17,20 +17,16 @@ const createModels = (): DbInterface => {
   };
 
   // company-user association
-  db.Company.hasMany(db.User, { foreignKey: "company", sourceKey: "companyId" });
-  db.User.belongsTo(db.Company, { foreignKey: "company", targetKey: "companyId" });
-
-  // like association
-  db.User.belongsToMany(db.Company, { through: "company_likes", foreignKey: "userId" });
-  db.Company.belongsToMany(db.User, { through: "company_likes", foreignKey: "companyId" });
+  db.Company.hasMany(db.User, { foreignKey: "company", sourceKey: "companyId", as: "Applyment" });
+  db.User.belongsTo(db.Company, { foreignKey: "company", targetKey: "companyId", as: "Applyment" });
 
   // company-room association
   db.Company.hasMany(db.Room, { foreignKey: "companyId", sourceKey: "companyId" });
   db.Room.belongsTo(db.Company, { foreignKey: "companyId", targetKey: "companyId" });
 
   // room-chat association
-  db.Room.hasMany(db.Chat, { foreignKey: "room", sourceKey: "roomId" });
-  db.Chat.belongsTo(db.Room, { foreignKey: "room", targetKey: "roomId" });
+  db.Room.hasMany(db.Chat, { foreignKey: "room", sourceKey: "roomId", as: "Chatting" });
+  db.Chat.belongsTo(db.Room, { foreignKey: "room", targetKey: "roomId", as: "Chatting" });
 
   return db;
 }

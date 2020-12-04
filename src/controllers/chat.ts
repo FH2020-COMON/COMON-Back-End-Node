@@ -2,9 +2,20 @@ import { BusinessLogic } from "../BusinessLogic";
 import { db } from "../models";
 import uuid from "uuid";
 import { Socket } from "socket.io";
-import httpError from "../httpError";
 
-const joinAndMakeRoom: BusinessLogic = async (req, res, next) => {
+const informationRooms: BusinessLogic = async (req, res, next) => {
+  const user = await db.User.findOne({ where: { email: req.decoded.email  } });
+  const companyRooms = await db.Room.findAll({
+    where: { companyId: user?.getDataValue("company") },
+    include: {
+      model: db.Chat,
+      order: ["createdAt"],
+    },
+  });
+  res.json(companyRooms);
+}
+
+const createNewRoom: BusinessLogic = async (req, res, next) => {
   const roomId = uuid.v4();
   const user = await db.User.findOne({
     where: { email: req.decoded.email }
@@ -20,9 +31,10 @@ const joinAndMakeRoom: BusinessLogic = async (req, res, next) => {
   company.join(roomId);
   company.emit("join Room", roomId);
   company.emit("newRoom", newRoom);
+  res.status(200).send("ok");
 }
 
-const addChat: BusinessLogic = async (req, res, next) => {
+const addCompanyChat: BusinessLogic = async (req, res, next) => {
   const user = await db.User.findOne({
     where: { email: req.decoded.email },
   });
@@ -31,6 +43,14 @@ const addChat: BusinessLogic = async (req, res, next) => {
     user: userEmail,
     room: req.params.roomId,
     chat: req.body.chat,
+    createdAt: new Date(),
   });
   req.app.get("io").of("/company").to(req.params.roomId).emit("chat", chat);
+  res.status(200).send("ok");
+}
+
+export {
+  informationRooms,
+  createNewRoom,
+  addCompanyChat
 }

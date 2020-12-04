@@ -3,6 +3,7 @@ interface ChatAttributes {
   user: string;
   chat: string;
   room: string;
+  createdAt: Date;
 }
 
 export default ChatAttributes;
