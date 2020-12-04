@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc && npm run copy-files",
     "log": "npx pm2 log",
-    "start:dev": "npx nodemon --exec node ./dist/bin/index",
+    "start:dev": "tsc && npx nodemon --exec node ./dist/bin/index",
     "start": "npx pm2 start ./dist/bin/index.js",
     "stop": "npx pm2 stop ./dist/bin/index.js",
     "copy-files": "npx copyfiles -f ./src/bin/*.pem ./"
