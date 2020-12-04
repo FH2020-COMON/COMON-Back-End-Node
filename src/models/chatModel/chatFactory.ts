@@ -15,7 +15,7 @@ const ChatFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor<ChatIn
       allowNull: false,
     }, 
     user: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.STRING(100),
       allowNull: false,
     },
     chat: {
