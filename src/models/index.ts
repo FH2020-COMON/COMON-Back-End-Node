@@ -16,11 +16,15 @@ const createModels = (): DbInterface => {
     Room: RoomFactory(sequelize),
   };
 
+  // company-user association
+  db.Company.hasMany(db.User, { foreignKey: "company", sourceKey: "companyId" });
+  db.User.belongsTo(db.Company, { foreignKey: "company", targetKey: "companyId" });
+
   // like association
   db.User.belongsToMany(db.Company, { through: "company_likes", foreignKey: "userId" });
   db.Company.belongsToMany(db.User, { through: "company_likes", foreignKey: "companyId" });
 
-  // camany-room association
+  // company-room association
   db.Company.hasMany(db.Room, { foreignKey: "companyId", sourceKey: "companyId" });
   db.Room.belongsTo(db.Company, { foreignKey: "companyId", targetKey: "companyId" });
 

@@ -22,6 +22,10 @@ const UserFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor<UserIn
     userType: {
       type: Sequelize.ENUM(),
       values: ["OWNER", "EXECUTIVE", "APPLICANT"],
+    },
+    company: {
+      type: Sequelize.INTEGER,
+      allowNull: true,
     }
   };
   const User = sequelize.define<UserInterface, UserAttributes>("users", attributes);
