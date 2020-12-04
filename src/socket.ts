@@ -18,6 +18,8 @@ const webSocket = (server: Server, app: Application, verifyToken: BusinessLogic)
       socket.emit('log', message);
     }
   
+    // 클라이언트끼리 p2p 통신을 위한 signaling server  
+    // SessionDescriptionProtocal을 클라이언트끼리 주고받음 
     socket.on('message', (message: object, room: string) => {
       console.log(typeof message);
       log('Client said: ' + message);
