@@ -8,4 +8,5 @@ export interface DbInterface {
   CompanyLike: Sequelize.ModelCtor<Interfaces.CompanyLikeInterface>;
   Chat: Sequelize.ModelCtor<Interfaces.ChatInterface>;
   Room: Sequelize.ModelCtor<Interfaces.RoomInterface>;
+  Application: Sequelize.ModelCtor<Interfaces.ApplicationInterface>;
 }
