@@ -3,10 +3,12 @@ import { SequelizeAttributes } from "../defaultInterfaceAttributes/sequelize.att
 import { UserAttributes } from "./attributes";
 import { UserInterface } from "../defaultInterfaceAttributes/model.interfaces";
 
-export const UserFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor<UserInterface> => {
+const UserFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor<UserInterface> => {
   const attributes: SequelizeAttributes<UserAttributes> = {
     email: {
       type: Sequelize.STRING(100),
+      primaryKey: true,
+      unique: true,
       allowNull: false,
     },
     name: {
@@ -21,7 +23,9 @@ export const UserFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor
       type: Sequelize.ENUM(),
       values: ["OWNER", "EXECUTIVE", "APPLICANT"],
     }
-  }
+  };
   const User = sequelize.define<UserInterface, UserAttributes>("users", attributes);
   return User;
 }
+
+export default UserFactory;
