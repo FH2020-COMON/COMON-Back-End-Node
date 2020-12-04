@@ -1,19 +1,27 @@
-import { Server } from "https";
+import { Server as httpsServer } from "https";
+import { Server as httpServer } from "http";
 import os from "os";
 import socketIO, { Socket } from 'socket.io';
 import { Application } from "express";
 import { BusinessLogic, NextFunction } from "./BusinessLogic";
 
-const webSocket = (server: Server, app: Application, verifyToken: BusinessLogic) => {
+const webSocket = (server: httpsServer | httpServer, app: Application, verifyToken: BusinessLogic) => {
   const io: socketIO.Server = socketIO(server);
-  io.sockets.on('connection', (socket: Socket) => {
-    app.set("io", io);
+  app.set("io", io);
 
+  const rtc: socketIO.Namespace = io.of("/rtc");
+  const company: socketIO.Namespace = io.of("/company");
+
+  company .on("connection", (socket) => {
+    socket.emit("connection", "hello");
+  });
+
+  rtc.on('connection', (socket: Socket) => {
     // 토큰 인증 미들웨어 베포 시에만 필요 
     //io.use((socket: Socket, next: NextFunction) => {
     //  verifyToken(socket.request, socket.request.res, next);
     //});
-
+    
     function log(message: string) {
       socket.emit('log', message);
     }

@@ -18,7 +18,7 @@ dotenv.config({ path: path.join(__dirname, "../.env")});
 app.set("port", process.env.PORT || "3000");
 app.set("view engine", "html");
 
-db.sequelize.sync({ force: true })
+db.sequelize.sync({ force: false })
 .then(() => console.log("Database connection successful"))
 .catch(console.error);  
 
@@ -33,6 +33,10 @@ app.use(session({
   saveUninitialized: false
 }));  
 app.use(cors());
+
+app.get("/", (req, res) => {
+  res.send("hello");
+});
 
 app.use("/", ComonRouter);
 app.use((req: Request, res: Response, next: NextFunction) => {
