@@ -1,12 +1,19 @@
 import { Server } from "https";
 import os from "os";
-import socketIO, { Socket } from 'socket.io'
+import socketIO, { Socket } from 'socket.io';
+import { Application } from "express";
+import { BusinessLogic, NextFunction } from "./BusinessLogic";
 
-const webSocket = (server: Server) => {
+const webSocket = (server: Server, app: Application, verifyToken: BusinessLogic) => {
   const io = socketIO(server);
   io.sockets.on('connection', (socket: Socket) => {
+    app.set("io", io);
 
-    // convenience function to log server messages on the client
+    // 토큰 인증 미들웨어 베포 시에만 필요 
+    //io.use((socket: Socket, next: NextFunction) => {
+    //  verifyToken(socket.request, socket.request.res, next);
+    //});
+
     function log(message: string) {
       socket.emit('log', message);
     }
