@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/FH2020-COMON/COMON-Back-End-Node#readme",
   "dependencies": {
+    "@types/jsonwebtoken": "^8.5.0",
     "@types/socket.io": "^2.1.11",
     "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
@@ -29,6 +30,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
     "mysql2": "^2.2.5",
     "node": "^15.3.0",
