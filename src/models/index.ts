@@ -10,7 +10,9 @@ const createModels = (): DbInterface => {
     User: UserFactory(sequelize),
     Company: CompanyFactory(sequelize),
     CompanyLike: CompanyLikeFactory(sequelize),
-  }
+  };
+  db.User.belongsToMany(db.Company, { foreignKey: "userId", sourceKey: "id", through: "CompanyLike" });
+  db.Company.belongsToMany(db.User, { foreignKey: "companyId", sourceKey: "id", through: "CompanyLike" });
   return db;
 }
 
