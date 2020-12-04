@@ -7,12 +7,18 @@ import session from "express-session";
 import * as dotenv from "dotenv";
 import cors from "cors";
 
+import { db } from "./models";
+
 const app: express.Application = express();
 
 dotenv.config({ path: path.join(__dirname, "../.env")});
 
 app.set("port", process.env.PORT || "3000");
 app.set("view engine", "html");
+
+db.sequelize.sync({ force: false })
+.then(() => console.log("Database connection successful"))
+.catch(console.error);  
 
 app.use(morgan("combined"));
 app.use(bodyParser.json());
