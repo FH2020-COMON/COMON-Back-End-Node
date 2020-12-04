@@ -1,8 +1,9 @@
 import Sequelize from "sequelize";
-import { UserInterface, ConsumerInterface } from "./model.interfaces"
+import * as Interfaces from "./model.interfaces";
 
 export interface DbInterface {
   sequelize: Sequelize.Sequelize;
-  User: Sequelize.ModelCtor<UserInterface>;
-  Consumer: Sequelize.ModelCtor<ConsumerInterface>;
+  User: Sequelize.ModelCtor<Interfaces.UserInterface>;
+  Company: Sequelize.ModelCtor<Interfaces.CompanyInterface>;
+  CompanyLike: Sequelize.ModelCtor<Interfaces.CompanyLikeInterface>;
 }

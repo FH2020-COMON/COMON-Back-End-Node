@@ -1,7 +1,7 @@
 import { Sequelize, Options } from "sequelize";
 import databaseConfigList from "./database.config";
 
-const env = process.env.NODE_ENV || "development";
+const env = "production";
 const config: Options = databaseConfigList[env];
 
 export const sequelize = new Sequelize(
