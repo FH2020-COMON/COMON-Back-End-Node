@@ -13,7 +13,9 @@ const verifyToken: BusinessLogic = (req, res, next) => {
     }
     console.log(req.headers);
     console.log(token.slice(7));
-    req.decoded = jwt.verify(token.slice(7), process.env.JWT_SECRET!);
+    req.decoded = jwt.verify(token.slice(7), process.env.JWT_SECRET!, {
+      algorithms: ["HS256"],
+    });
     next();
   } catch(err) {
     console.error(err);
