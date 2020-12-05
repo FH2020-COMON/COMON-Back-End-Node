@@ -17,16 +17,14 @@ const informationRooms: BusinessLogic = async (req, res, next) => {
 }
 
 const myInformation: BusinessLogic = async (req, res, next) => {
-  const user = await db.User.findOne({
-    where: { email: req.email },
-    attributes: [],
-    include: { 
-      model: db.Company,
-      attributes: ["company_name"],
-    }
+  const user = await db.Application.findOne({
+    where: { user_email: req.email },
+    attributes: ["company_id"],
   });
-  console.log(user);
-  res.json(user);
+  const company = await db.Company.findOne({
+    where: { company_id: user!.company_id }
+  });
+  res.send(company!.company_name);
 }
 
 const createNewRoom: BusinessLogic = async (req, res, next) => {
