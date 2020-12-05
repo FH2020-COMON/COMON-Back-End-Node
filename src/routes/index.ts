@@ -22,7 +22,7 @@ router.get("/company/room/list", verifyToken, sendRoomListRouter)
 router.post("/company/room/create", verifyToken, createNewRoomRotuer);
 router.post("/company/chat/:roomId", verifyToken, companyChattingRouter);
 
-router.post("/recruiting/apply", verifyToken, uploadFileMiddleware.single("hwp"), applyUserRouter);
+router.post("/recruiting/apply", verifyToken, uploadFileMiddleware.single("file"), applyUserRouter);
 router.get("/recruiting/list", verifyToken, applyUserListRouter);
 router.post("/recruiting/passed", verifyToken, passedUserRouter);
 router.post("/recruiting/failed", verifyToken, failedUserRouter);
