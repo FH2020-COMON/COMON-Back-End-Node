@@ -9,7 +9,7 @@ const userApplyCompany: BusinessLogic = async (req, res, next) => {
   db.Application.create({
     name: user!.name,
     user_email: user!.email,
-    form: `/hwp/${req.file.filename}`,
+    form: `/${req.file.filename}`,
     company_id: companyId,
     status: "서류접수중",
   });
