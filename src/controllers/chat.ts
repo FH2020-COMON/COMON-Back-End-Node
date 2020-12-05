@@ -9,6 +9,7 @@ const informationRooms: BusinessLogic = async (req, res, next) => {
     where: { companyId: user?.getDataValue("company") },
     include: {
       model: db.Chat,
+      as: "Chatting",
       order: ["createdAt"],
     },
   });
