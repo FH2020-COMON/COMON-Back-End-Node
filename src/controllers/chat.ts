@@ -16,6 +16,19 @@ const informationRooms: BusinessLogic = async (req, res, next) => {
   res.json(companyRooms);
 }
 
+const myInformation: BusinessLogic = async (req, res, next) => {
+  const user = await db.User.findOne({
+    where: { email: req.email },
+    attributes: [],
+    include: { 
+      model: db.Company,
+      attributes: ["company_name"],
+    }
+  });
+  console.log(user);
+  res.json(user);
+}
+
 const createNewRoom: BusinessLogic = async (req, res, next) => {
   const roomId = v4();
   const user = await db.User.findOne({
@@ -53,5 +66,6 @@ const addCompanyChat: BusinessLogic = async (req, res, next) => {
 export {
   informationRooms,
   createNewRoom,
-  addCompanyChat
+  addCompanyChat,
+  myInformation
 }

@@ -9,6 +9,7 @@ import * as applyUserController from "../controllers/apply";
 const router: Router = Router();
 
 const sendRoomListRouter = errorHandler(chattingController.informationRooms);
+const myInformationRouter = errorHandler(chattingController.myInformation);
 const createNewRoomRotuer = errorHandler(chattingController.createNewRoom);
 const companyChattingRouter = errorHandler(chattingController.addCompanyChat);
 
@@ -20,7 +21,8 @@ const passedUserRouter = errorHandler(applyUserController.passedUserApply);
 const failedUserRouter = errorHandler(applyUserController.failedUserApply);
 const sendDateRouter = errorHandler(applyUserController.sendDateApply);
 
-router.get("/company/room/list", verifyToken, sendRoomListRouter)
+router.get("/company/room/list", verifyToken, sendRoomListRouter);
+router.get("/company/my", verifyToken, myInformationRouter)
 router.post("/company/room/create", verifyToken, createNewRoomRotuer);
 router.post("/company/chat/:roomId", verifyToken, companyChattingRouter);
 
