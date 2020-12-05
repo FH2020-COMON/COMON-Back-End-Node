@@ -6,7 +6,7 @@ import { Socket } from "socket.io";
 const informationRooms: BusinessLogic = async (req, res, next) => {
   const user = await db.User.findOne({ where: { email: req.email  } });
   const companyRooms = await db.Room.findAll({
-    where: { company_id: user!.company },
+    where: { company_id: user!.company_id },
     include: {
       model: db.Chat,
       order: ["createdAt"],
@@ -20,7 +20,7 @@ const createNewRoom: BusinessLogic = async (req, res, next) => {
   const user = await db.User.findOne({
     where: { email: req.email }
   });
-  const userCompanyId = user!.company;
+  const userCompanyId = user!.company_id;
   const newRoom = await db.Room.create({
     title: req.body.title,
     room_id: roomId,
