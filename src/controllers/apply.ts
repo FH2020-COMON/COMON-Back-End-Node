@@ -16,11 +16,6 @@ const userApplyCompany: BusinessLogic = async (req, res, next) => {
   res.status(200).send("ok");
 }
 
-const applyGuysList: BusinessLogic = async (req, res, next) => {
-  const user = await db.User.findOne({ where: { email: req.email } });
-  
-}
-
 const failedUserApply: BusinessLogic = async (req, res, next) => {
   const { name, companyId } = req.body;
   db.Application.update({
@@ -61,9 +56,27 @@ const sendDateApply: BusinessLogic = async (req, res, next) => {
   res.send("ok");
 }
 
+const applyCompanyList: BusinessLogic = async (req, res, next) => {
+  const applications = await db.Application.findAll({
+    where: { user_email: req.email },
+    order: ["status"],
+  });
+  res.json(applications);
+}
+
+const applyGuysList: BusinessLogic = async (req, res, next) => {
+  const companyId = req.params.companyId;
+  const applications = await db.Application.findAll({
+    where: { company_id: companyId },
+    order: ["status"],
+  });
+  res.json(applications);
+}
+
 export {
-  userApplyCompany,
   applyGuysList,
+  applyCompanyList,
+  userApplyCompany,
   passedUserApply,
   failedUserApply,
   sendDateApply,

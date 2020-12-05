@@ -9,7 +9,6 @@ import cors from "cors";
 
 import { db } from "./models";
 import ComonRouter from "./routes";
-import { request } from "http";
 
 const app: express.Application = express();
 
