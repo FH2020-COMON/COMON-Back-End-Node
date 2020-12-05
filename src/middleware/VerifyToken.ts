@@ -1,8 +1,9 @@
-import jwt, { VerifyOptions } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+import axios from "axios";
 
 import { BusinessLogic } from "../BusinessLogic";
 
-const verifyToken: BusinessLogic = (req, res, next) => {
+const verifyToken: BusinessLogic = async (req, res, next) => {
   try {
     const token: any = req.headers["authorization"];
     if(!token) {
@@ -11,19 +12,10 @@ const verifyToken: BusinessLogic = (req, res, next) => {
         message: "Bad Request",
       });
     }
-    console.log(req.headers);
-    console.log(token.slice(7));
-    jwt.verify(token.slice(7), process.env.JWT_SECRET!, { algorithms: ["HS512"] }, (err, decoded) => {
-      if(err) {
-        console.log(err.message);
-        return res.status(401).json({
-          code: 401,
-          message: "Unauthorized token",
-        });
-      }
-      res.decoded = decoded;
-      next();
-    });
+    const verified = await axios.get(`http://ec2-54-180-98-91.ap-northeast-2.compute.amazonaws.com:8000/auth/${token}`);
+    console.log(verified);
+    req.decoded = verified.data;
+    next();
   } catch(err) {
     console.error(err);
     if(err.name === "TokenExpiredError") {
