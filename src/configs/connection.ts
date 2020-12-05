@@ -13,6 +13,9 @@ export const sequelize = new Sequelize(
     dialect: "mysql",
     define: {
       timestamps: false,
+      freezeTableName: true,
+      charset: "utf8",
+      collate: "utf8_general_ci"
     } 
   }
 );

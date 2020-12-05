@@ -18,7 +18,7 @@ const userApplyCompany: BusinessLogic = async (req, res, next) => {
 
 const applyGuysList: BusinessLogic = async (req, res, next) => {
   const user = await db.User.findOne({ where: { email: req.decoded.email } });
-  const companyId = user?.getDataValue("company");
+  const companyId = user!.getDataValue("company");
   const company = await db.Company.findOne({ 
     where: { companyId: companyId }
   });

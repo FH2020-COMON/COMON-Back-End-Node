@@ -28,7 +28,7 @@ const ChatFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor<ChatIn
       defaultValue: Sequelize.NOW,
     }
   };
-  const Chat = sequelize.define<ChatInterface, ChatAttributes>("chats", attributes);
+  const Chat = sequelize.define<ChatInterface, ChatAttributes>("chat", attributes);
   return Chat;
 }
 

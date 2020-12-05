@@ -31,8 +31,8 @@ const createModels = (): DbInterface => {
   db.Chat.belongsTo(db.Room, { foreignKey: "room", targetKey: "roomId", as: "Chatting" });
 
   // application associction n : m
-  db.User.belongsToMany(db.Company, { foreignKey: "email", through: "applications" });
-  db.Company.belongsToMany(db.User, { foreignKey: "companyId", sourceKey: "companyId", through: "applications" });
+  db.User.belongsToMany(db.Company, { foreignKey: "email", through: "application" });
+  db.Company.belongsToMany(db.User, { foreignKey: "companyId", sourceKey: "companyId", through: "application" });
   return db;
 }
 

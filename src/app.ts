@@ -18,7 +18,7 @@ dotenv.config({ path: path.join(__dirname, "../.env")});
 app.set("port", process.env.PORT || "3000");
 app.set("view engine", "html");
 
-db.sequelize.sync({ force: false })
+db.sequelize.sync({ force: true })
 .then(() => console.log("Database connection successful"))
 .catch(console.error);  
 

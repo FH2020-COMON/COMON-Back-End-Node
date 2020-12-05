@@ -34,7 +34,7 @@ const ApplicationFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor
       type: Sequelize.STRING(25),
     },
   };
-  const Application = sequelize.define<ApplicationInterface, ApplicationAttributes>("applications", attributes);
+  const Application = sequelize.define<ApplicationInterface, ApplicationAttributes>("application", attributes);
   return Application;
 }
 

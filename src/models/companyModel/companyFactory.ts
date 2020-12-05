@@ -19,12 +19,12 @@ const CompanyFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor<Com
       type: Sequelize.STRING(50),
       allowNull: false,
     },
-    like: {
+    likes: {
       type: Sequelize.BIGINT,
       allowNull: false,
     }
   };
-  const Company = sequelize.define<CompanyInterface, CompanyAttributes>("companys", attributes);
+  const Company = sequelize.define<CompanyInterface, CompanyAttributes>("company", attributes);
   return Company;
 }
 

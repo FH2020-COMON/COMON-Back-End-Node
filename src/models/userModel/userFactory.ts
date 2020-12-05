@@ -28,7 +28,7 @@ const UserFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor<UserIn
       allowNull: true,
     }
   };
-  const User = sequelize.define<UserInterface, UserAttributes>("users", attributes);
+  const User = sequelize.define<UserInterface, UserAttributes>("user", attributes);
   return User;
 }
 

@@ -19,7 +19,7 @@ const RoomFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor<RoomIn
       allowNull: false,
     }
   };
-  const Room = sequelize.define<RoomInterface, RoomAttibutes>("rooms", attributes);
+  const Room = sequelize.define<RoomInterface, RoomAttibutes>("room", attributes);
   return Room;
 };
 
