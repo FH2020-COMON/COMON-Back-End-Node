@@ -20,7 +20,7 @@ const passedUserRouter = errorHandler(applyUserController.passedUserApply);
 const failedUserRouter = errorHandler(applyUserController.failedUserApply);
 const sendDateRouter = errorHandler(applyUserController.sendDateApply);
 
-router.get("/company/room/list", verifyToken, sendRoomListRouter)
+router.get("/company/room/list", sendRoomListRouter)
 router.post("/company/room/create", verifyToken, createNewRoomRotuer);
 router.post("/company/chat/:roomId", verifyToken, companyChattingRouter);
 
@@ -30,6 +30,6 @@ router.post("/recruiting/failed", verifyToken, failedUserRouter);
 router.post("/recruiting/date", verifyToken, sendDateRouter);
 
 router.get("/recruiting/list/user/:company_id", verifyToken, applyUserListRouter);
-router.get("/recruiting/list/company", applyCompanyListRoter);
+router.get("/recruiting/list/company", verifyToken, applyCompanyListRoter);
 
 export default router;
