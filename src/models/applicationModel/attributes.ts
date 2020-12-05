@@ -4,7 +4,7 @@ interface ApplicationAttributes {
   email: string;
   form: string;
   companyId: number;
-  status: "PASS" | "FAIL" | "PEND";
+  status: "서류접수중" | "합격" | "불합격" | "면접대기" | "면접가능";
   date?: string;
 }
 
