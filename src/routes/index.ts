@@ -30,6 +30,6 @@ router.post("/recruiting/failed", verifyToken, failedUserRouter);
 router.post("/recruiting/date", verifyToken, sendDateRouter);
 
 router.get("/recruiting/list/user/:company_id", verifyToken, applyUserListRouter);
-router.get("/recruiting/list/company", verifyToken, applyCompanyListRoter);
+router.get("/recruiting/list/company", applyCompanyListRoter);
 
 export default router;
