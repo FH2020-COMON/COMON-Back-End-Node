@@ -1,11 +1,11 @@
 interface ApplicationAttributes {
   id?: number;
   name: string;
-  email: string;
-  form: string;
-  companyId: number;
   status: "서류접수중" | "합격" | "불합격" | "면접대기" | "면접가능";
+  form: string;
   date?: string;
+  company_id: number;
+  user_email: string;
 }
 
 export default ApplicationAttributes;

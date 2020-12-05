@@ -40,7 +40,7 @@ const addCompanyChat: BusinessLogic = async (req, res, next) => {
   });
   const userName = user!.getDataValue("name");
   const chat = await db.Chat.create({
-    user: userName,
+    user_name: userName,
     room_id: req.params.roomId,
     chat: req.body.chat,
     createdAt: new Date(),

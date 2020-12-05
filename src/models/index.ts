@@ -22,6 +22,18 @@ const createModels = (): DbInterface => {
   db.Room.hasMany(db.Chat, { foreignKey: "room_id", sourceKey: "room_id" });
   db.Chat.belongsTo(db.Room, { foreignKey: "room_id", targetKey: "room_id" });
 
+  db.User.hasMany(db.Chat, { foreignKey: "user_name", sourceKey :"name" });
+  db.Chat.belongsTo(db.User, { foreignKey: "user_name", targetKey: "name" });
+
+  db.User.hasMany(db.Application, { foreignKey: "user_email", sourceKey: "email" });
+  db.Application.belongsTo(db.User, { foreignKey: "user_email", targetKey: "email" });
+
+  db.Company.hasMany(db.Application, { foreignKey: "company_id", sourceKey: "company_id" });
+  db.Application.belongsTo(db.Company, { foreignKey: "company_id", targetKey: "company_id" });
+
+  db.Company.hasMany(db.Room, { foreignKey: "company_id", sourceKey: "company_id" });
+  db.Room.belongsTo(db.Company, { foreignKey: "company_id", targetKey: "company_id" });
+
   return db;
 }
 

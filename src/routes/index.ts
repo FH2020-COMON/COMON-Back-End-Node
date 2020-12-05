@@ -13,6 +13,7 @@ const createNewRoomRotuer = errorHandler(chattingController.createNewRoom);
 const companyChattingRouter = errorHandler(chattingController.addCompanyChat);
 
 const applyUserRouter = errorHandler(applyUserController.userApplyCompany);
+
 const applyUserListRouter = errorHandler(applyUserController.applyGuysList);
 const passedUserRouter = errorHandler(applyUserController.passedUserApply);
 const failedUserRouter = errorHandler(applyUserController.failedUserApply);
@@ -23,9 +24,11 @@ router.post("/company/room/create", verifyToken, createNewRoomRotuer);
 router.post("/company/chat/:roomId", verifyToken, companyChattingRouter);
 
 router.post("/recruiting/apply", verifyToken, uploadFileMiddleware.single("file"), applyUserRouter);
-router.get("/recruiting/list", verifyToken, applyUserListRouter);
 router.post("/recruiting/passed", verifyToken, passedUserRouter);
 router.post("/recruiting/failed", verifyToken, failedUserRouter);
 router.post("/recruiting/date", verifyToken, sendDateRouter);
+
+router.get("/recruiting/list/user", verifyToken, applyUserListRouter);
+router.get("/recruiting/list/company", );
 
 export default router;

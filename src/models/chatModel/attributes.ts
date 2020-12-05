@@ -1,6 +1,6 @@
 interface ChatAttributes {
   id?: number;
-  user: string;
+  user_name: string;
   chat: string;
   room_id: string;
   createdAt: Date;

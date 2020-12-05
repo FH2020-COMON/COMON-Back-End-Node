@@ -8,9 +8,9 @@ const userApplyCompany: BusinessLogic = async (req, res, next) => {
   const user = await db.User.findOne({ where: { email: req.email } });
   db.Application.create({
     name: user!.name,
-    email: user!.email,
+    user_email: user!.email,
     form: `/hwp/${req.file.filename}`,
-    companyId: companyId,
+    company_id: companyId,
     status: "서류접수중",
   });
   res.status(200).send("ok");
@@ -18,14 +18,7 @@ const userApplyCompany: BusinessLogic = async (req, res, next) => {
 
 const applyGuysList: BusinessLogic = async (req, res, next) => {
   const user = await db.User.findOne({ where: { email: req.email } });
-  const companyId = user!.company;
-  const company = await db.Company.findOne({ 
-    where: { company_id: companyId }
-  });
-  const applyList = await db.Application.findAll({
-    where: { [Op.and]: [{ companyId: company!.company_id }, { name: user!.name }]}
-  });
-  return res.status(200).json(applyList);
+  
 }
 
 const failedUserApply: BusinessLogic = async (req, res, next) => {

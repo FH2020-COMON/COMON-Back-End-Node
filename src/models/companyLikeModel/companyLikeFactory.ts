@@ -10,14 +10,14 @@ const CompanyLikeFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor
       autoIncrement: true,
       primaryKey: true,
     },
-    company_id: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-    },
     user_email: {
       type: Sequelize.STRING(255),
       allowNull: false,
     },
+    company_id: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    }
   };
   const CompanyLike = sequelize.define<CompanyLikeInterface, CompanyLikeAttributes>("company_like", attributes);
   return CompanyLike;

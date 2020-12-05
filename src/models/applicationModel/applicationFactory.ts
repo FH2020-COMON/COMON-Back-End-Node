@@ -11,18 +11,18 @@ const ApplicationFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor
       autoIncrement: true,
     }, 
     name: {
-      type: Sequelize.STRING(100),
+      type: Sequelize.STRING(255),
       allowNull: false,
     },
-    email: {
-      type: Sequelize.STRING(100),
+    user_email: {
+      type: Sequelize.STRING(255),
       allowNull: false,
     }, 
     form: {
-      type: Sequelize.STRING(200),
+      type: Sequelize.STRING(255),
       allowNull: false,
     },
-    companyId: {
+    company_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
     }, 
