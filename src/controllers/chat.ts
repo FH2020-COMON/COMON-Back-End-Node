@@ -9,7 +9,6 @@ const informationRooms: BusinessLogic = async (req, res, next) => {
     where: { company_id: user!.company },
     include: {
       model: db.Chat,
-      as: "Chatting",
       order: ["createdAt"],
     },
   });
