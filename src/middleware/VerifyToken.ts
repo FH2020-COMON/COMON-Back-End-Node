@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import jwt, { VerifyOptions } from "jsonwebtoken";
 
 import { BusinessLogic } from "../BusinessLogic";
 
@@ -13,10 +13,17 @@ const verifyToken: BusinessLogic = (req, res, next) => {
     }
     console.log(req.headers);
     console.log(token.slice(7));
-    req.decoded = jwt.verify(token.slice(7), process.env.JWT_SECRET!, {
-      algorithms: ["HS256"],
+    jwt.verify(token.slice(7), process.env.JWT_SECRET!, { algorithms: ["HS512"] }, (err, decoded) => {
+      if(err) {
+        console.log(err.message);
+        return res.status(401).json({
+          code: 401,
+          message: "Unauthorized token",
+        });
+      }
+      res.decoded = decoded;
+      next();
     });
-    next();
   } catch(err) {
     console.error(err);
     if(err.name === "TokenExpiredError") {
