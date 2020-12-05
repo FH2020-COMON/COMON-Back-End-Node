@@ -18,7 +18,7 @@ const verifyToken: BusinessLogic = async (req, res, next) => {
       },
     });
     console.log(verified.data);
-    req.decoded = verified.data;
+    req.decoded.sub = verified.data;
     next();
   } catch(err) {
     console.error(err);
