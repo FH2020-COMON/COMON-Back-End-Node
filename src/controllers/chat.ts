@@ -59,7 +59,7 @@ const addCompanyChat: BusinessLogic = async (req, res, next) => {
     chat: req.body.chat,
     createdAt: new Date(),
   });
-  req.app.get("io").of("/company").to(req.params.roomId).emit("chat", chat);
+  req.app.get("io").of("/company").emit("chat", chat);
   console.log("chatting to ", req.params.roomId);
   res.status(200).send("ok");
 }
