@@ -4,7 +4,7 @@ import uuid from "uuid";
 import { Socket } from "socket.io";
 
 const informationRooms: BusinessLogic = async (req, res, next) => {
-  const user = await db.User.findOne({ where: { email: req.decoded.sub  } });
+  const user = await db.User.findOne({ where: { email: req.email  } });
   const companyRooms = await db.Room.findAll({
     where: { companyId: user?.getDataValue("company") },
     include: {
@@ -18,7 +18,7 @@ const informationRooms: BusinessLogic = async (req, res, next) => {
 const createNewRoom: BusinessLogic = async (req, res, next) => {
   const roomId = uuid.v4();
   const user = await db.User.findOne({
-    where: { email: req.decoded.sub }
+    where: { email: req.email }
   });
   const userCompanyId = user?.getDataValue("company");
   const newRoom = await db.Room.create({
@@ -36,11 +36,11 @@ const createNewRoom: BusinessLogic = async (req, res, next) => {
 
 const addCompanyChat: BusinessLogic = async (req, res, next) => {
   const user = await db.User.findOne({
-    where: { email: req.decoded.sub },
+    where: { email: req.email },
   });
-  const userEmail = user!.getDataValue("email");
+  const userName = user!.getDataValue("name");
   const chat = await db.Chat.create({
-    user: userEmail,
+    user: userName,
     room: req.params.roomId,
     chat: req.body.chat,
     createdAt: new Date(),

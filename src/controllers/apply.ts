@@ -5,7 +5,7 @@ import { Op } from "sequelize";
 
 const userApplyCompany: BusinessLogic = async (req, res, next) => {
   const { companyId } = req.body;
-  const user = await db.User.findOne({ where: { email: req.decoded.sub } });
+  const user = await db.User.findOne({ where: { email: req.email } });
   db.Application.create({
     name: user!.name,
     email: user!.email,
@@ -17,7 +17,7 @@ const userApplyCompany: BusinessLogic = async (req, res, next) => {
 }
 
 const applyGuysList: BusinessLogic = async (req, res, next) => {
-  const user = await db.User.findOne({ where: { email: req.decoded.sub } });
+  const user = await db.User.findOne({ where: { email: req.email } });
   const companyId = user!.getDataValue("company");
   const company = await db.Company.findOne({ 
     where: { companyId: companyId }
