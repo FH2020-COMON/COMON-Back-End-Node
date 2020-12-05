@@ -16,12 +16,17 @@ const informationRooms: BusinessLogic = async (req, res, next) => {
 }
 
 const myInformation: BusinessLogic = async (req, res, next) => {
-  const app = await db.Application.findOne({
-    where: { user_email: req.email },
+  const user = await db.User.findOne({
+    where: { email: req.email },
     attributes: ["company_id"],
   });
-  const company = await db.Company.findOne({
-    where: { company_id: app!.company_id }
+  if(!(user!.company_id)) {
+    res.status(400).json({
+      message: "Bad Request",
+    });
+  }
+   const company = await db.Company.findOne({
+    where: { company_id: user!.company_id }
   });
   res.send(company!.company_name);
 }
