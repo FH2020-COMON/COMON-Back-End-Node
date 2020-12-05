@@ -11,7 +11,7 @@ const CompanyFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor<Com
       autoIncrement: true,
       allowNull: false,
     },
-    compan_address: {
+    company_address: {
       type: Sequelize.STRING(255),
       allowNull: false,
     },
