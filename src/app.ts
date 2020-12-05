@@ -22,7 +22,7 @@ db.sequelize.sync({ force: false })
 .then(() => console.log("Database connection successful"))
 .catch(console.error);  
 
-app.use(morgan("combined"));
+app.use(morgan("dev"));
 app.use("/", express.static(path.join(__dirname, "../uploads")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

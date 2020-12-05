@@ -11,7 +11,9 @@ const verifyToken: BusinessLogic = (req, res, next) => {
         message: "Bad Request",
       });
     }
-    req.decoded = jwt.verify(token, process.env.JWT_SECRET!);
+    console.log(process.env.JWT_SECRET);
+    console.log(req.headers);
+    req.decoded = jwt.verify(token.slice(7), process.env.JWT_SECRET!);
     next();
   } catch(err) {
     console.error(err);
