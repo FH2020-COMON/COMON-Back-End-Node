@@ -29,7 +29,7 @@ router.post("/recruiting/passed", verifyToken, passedUserRouter);
 router.post("/recruiting/failed", verifyToken, failedUserRouter);
 router.post("/recruiting/date", verifyToken, sendDateRouter);
 
-router.get("/recruiting/list/company/:id", verifyToken, applyUserListRouter);
-router.get("/recruiting/list/user", verifyToken, applyCompanyListRoter);
+router.get("/recruiting/list/user/:company_id", verifyToken, applyUserListRouter);
+router.get("/recruiting/list/company", verifyToken, applyCompanyListRoter);
 
 export default router;

@@ -65,7 +65,7 @@ const applyCompanyList: BusinessLogic = async (req, res, next) => {
 }
 
 const applyGuysList: BusinessLogic = async (req, res, next) => {
-  const companyId = req.params.companyId;
+  const companyId = req.params.company_id;
   const applications = await db.Application.findAll({
     where: { company_id: companyId },
     order: ["status"],

@@ -22,7 +22,7 @@ const UserFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor<UserIn
     user_type: {
       type: Sequelize.STRING(255),
     },
-    company: {
+    company_id: {
       type: Sequelize.INTEGER,
       allowNull: true,
     }

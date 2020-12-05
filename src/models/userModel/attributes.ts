@@ -9,7 +9,7 @@ interface UserAttributes {
   name: string;
   password: string;
   user_type?: UserType;
-  company?: number;
+  company_id?: number;
 }
 
 export {
