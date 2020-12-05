@@ -1,7 +1,7 @@
 interface CompanyLikeAttributes {
   id: number;
-  companyId: number;
-  userId: number;
+  company_id: number;
+  user_email: number;
 }
 
 export { 

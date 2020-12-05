@@ -6,22 +6,21 @@ import { UserInterface } from "../defaultInterfaceAttributes/model.interfaces";
 const UserFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor<UserInterface> => {
   const attributes: SequelizeAttributes<UserAttributes> = {
     email: {
-      type: Sequelize.STRING(100),
+      type: Sequelize.STRING(255),
       primaryKey: true,
       unique: true,
       allowNull: false,
     },
     name: {
-      type: Sequelize.STRING(100),
+      type: Sequelize.STRING(255),
       allowNull: false,
     },
     password: {
-      type: Sequelize.STRING(200),
+      type: Sequelize.STRING(255),
       allowNull: false,
     },
-    userType: {
-      type: Sequelize.ENUM(),
-      values: ["OWNER", "EXECUTIVE", "APPLICANT"],
+    user_type: {
+      type: Sequelize.STRING(255),
     },
     company: {
       type: Sequelize.INTEGER,

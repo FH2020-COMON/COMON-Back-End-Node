@@ -5,22 +5,26 @@ import { CompanyInterface } from "../defaultInterfaceAttributes/model.interfaces
 
 const CompanyFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor<CompanyInterface> => {
   const attributes: SequelizeAttributes<CompanyAttributes> = {
-    companyId: {
+    company_id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
-    companyName: {
-      type: Sequelize.STRING(100),
+    compan_address: {
+      type: Sequelize.STRING(255),
       allowNull: false,
     },
-    ceoName: {
-      type: Sequelize.STRING(50),
+    company_name: {
+      type: Sequelize.STRING(255),
       allowNull: false,
     },
     likes: {
       type: Sequelize.BIGINT,
+      allowNull: false,
+    },
+    owner_email: {
+      type: Sequelize.STRING(255),
       allowNull: false,
     }
   };

@@ -1,8 +1,9 @@
 interface CompanyAttributes {
-  companyId: number;
-  companyName: string;
-  ceoName: string;
+  company_id: number;
+  compan_address: string;
+  company_name: string;
   likes: number;
+  owner_email: string;
 }
 
 export {

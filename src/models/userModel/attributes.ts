@@ -8,8 +8,8 @@ interface UserAttributes {
   email: string;
   name: string;
   password: string;
-  userType?: UserType;
-  company: number;
+  user_type?: UserType;
+  company?: number;
 }
 
 export {
