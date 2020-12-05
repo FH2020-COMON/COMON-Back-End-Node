@@ -23,7 +23,7 @@ db.sequelize.sync({ force: false })
 .catch(console.error);  
 
 app.use(morgan("dev"));
-app.use("/", express.static(path.join(__dirname, "..//uploads")));
+app.use("/", express.static(path.join(__dirname, "../uploads")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
