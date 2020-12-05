@@ -12,17 +12,16 @@ const informationRooms: BusinessLogic = async (req, res, next) => {
       order: ["createdAt"],
     },
   });
-  console.log(companyRooms);
   res.json(companyRooms);
 }
 
 const myInformation: BusinessLogic = async (req, res, next) => {
-  const user = await db.Application.findOne({
+  const app = await db.Application.findOne({
     where: { user_email: req.email },
     attributes: ["company_id"],
   });
   const company = await db.Company.findOne({
-    where: { company_id: user!.company_id }
+    where: { company_id: app!.company_id }
   });
   res.send(company!.company_name);
 }
