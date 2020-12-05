@@ -12,12 +12,11 @@ const verifyToken: BusinessLogic = async (req, res, next) => {
         message: "Bad Request",
       });
     }
-    const verified = await axios.get(`http://ec2-54-180-98-91.ap-northeast-2.compute.amazonaws.com:8000/auth`, {
+    const verified = await axios.get(`http://ec2-54-180-98-91.ap-northeast-2.compute.amazonaws.com:8080/auth`, {
       headers: {
         authorization: token.slice(7),
       },
     });
-    console.log(verified.data);
     req.email = verified.data;
     next();
   } catch(err) {
