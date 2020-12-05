@@ -11,8 +11,8 @@ const verifyToken: BusinessLogic = (req, res, next) => {
         message: "Bad Request",
       });
     }
-    console.log(process.env.JWT_SECRET);
     console.log(req.headers);
+    console.log(token.slice(7));
     req.decoded = jwt.verify(token.slice(7), process.env.JWT_SECRET!);
     next();
   } catch(err) {
@@ -28,6 +28,6 @@ const verifyToken: BusinessLogic = (req, res, next) => {
       message: "Unauthorized token",
     });
   }
-}
+} 
 
 export default verifyToken;
