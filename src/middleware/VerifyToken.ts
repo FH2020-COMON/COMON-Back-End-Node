@@ -12,7 +12,7 @@ const verifyToken: BusinessLogic = async (req, res, next) => {
         message: "Bad Request",
       });
     }
-    const verified = await axios.get(`localhost:8000/auth/${token.slice(7)}`);
+    const verified = await axios.get(`db:8000/auth/${token.slice(7)}`);
     console.log(verified);
     req.decoded = verified.data;
     next();
