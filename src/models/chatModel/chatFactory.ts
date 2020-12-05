@@ -10,7 +10,7 @@ const ChatFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor<ChatIn
       autoIncrement: true,
       primaryKey: true,
     },
-    room: {
+    room_id: {
       type: Sequelize.STRING(300),
       allowNull: false,
     }, 

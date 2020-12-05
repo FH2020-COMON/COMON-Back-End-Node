@@ -1,7 +1,7 @@
 interface RoomAttributes {
-  roomId: string;
+  room_id: string;
   title: string;
-  companyId: number;
+  company_id: number;
 }
 
 export default RoomAttributes;

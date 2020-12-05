@@ -18,21 +18,10 @@ const createModels = (): DbInterface => {
     Application: ApplicationFactory(sequelize),
   };
 
-  // company-user association 1 : n
-  db.Company.hasMany(db.User, { foreignKey: "company", sourceKey: "companyId", as: "Applyment" });
-  db.User.belongsTo(db.Company, { foreignKey: "company", targetKey: "companyId", as: "Applyment" });
+  // room-chat association 1: n 
+  db.Room.hasMany(db.Chat, { foreignKey: "room_id", sourceKey: "room_id" });
+  db.Chat.belongsTo(db.Room, { foreignKey: "room_id", targetKey: "room_id" });
 
-  // company-room association 1: n
-  db.Company.hasMany(db.Room, { foreignKey: "companyId", sourceKey: "companyId" });
-  db.Room.belongsTo(db.Company, { foreignKey: "companyId", targetKey: "companyId" });
-
-  // room-chat association 1: n
-  db.Room.hasMany(db.Chat, { foreignKey: "room", sourceKey: "roomId", as: "Chatting" });
-  db.Chat.belongsTo(db.Room, { foreignKey: "room", targetKey: "roomId", as: "Chatting" });
-
-  // application associction n : m
-  db.User.belongsToMany(db.Company, { foreignKey: "email", through: "application" });
-  db.Company.belongsToMany(db.User, { foreignKey: "companyId", sourceKey: "companyId", through: "application" });
   return db;
 }
 

@@ -18,15 +18,12 @@ const userApplyCompany: BusinessLogic = async (req, res, next) => {
 
 const applyGuysList: BusinessLogic = async (req, res, next) => {
   const user = await db.User.findOne({ where: { email: req.email } });
-  const companyId = user!.getDataValue("company");
+  const companyId = user!.company;
   const company = await db.Company.findOne({ 
-    where: { companyId: companyId }
+    where: { company_id: companyId }
   });
-  if(company?.ceoName !== user?.name) {
-    return new httpError(403, "Forbedden User");
-  }
   const applyList = await db.Application.findAll({
-    where: { [Op.and]: [{ companyId: company?.companyId }, { name: user?.name }]}
+    where: { [Op.and]: [{ companyId: company!.company_id }, { name: user!.name }]}
   });
   return res.status(200).json(applyList);
 }

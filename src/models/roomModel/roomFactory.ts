@@ -5,7 +5,7 @@ import { RoomInterface } from "../defaultInterfaceAttributes/model.interfaces";
 
 const RoomFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor<RoomInterface> => {
   const attributes: SequelizeAttributes<RoomAttibutes> = {
-    roomId: {
+    room_id: {
       type: Sequelize.STRING(300),
       primaryKey: true,
       unique: true,
@@ -14,7 +14,7 @@ const RoomFactory = (sequelize: Sequelize.Sequelize): Sequelize.ModelCtor<RoomIn
       type: Sequelize.STRING(100),
       allowNull: false,
     },
-    companyId: {
+    company_id: {
       type: Sequelize.INTEGER,
       allowNull: false,
     }
