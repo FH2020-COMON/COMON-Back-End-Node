@@ -1,6 +1,6 @@
 import { BusinessLogic } from "../BusinessLogic";
 import { db } from "../models";
-import uuid from "uuid";
+import { v4 } from "uuid";
 import { Socket } from "socket.io";
 
 const informationRooms: BusinessLogic = async (req, res, next) => {
@@ -17,7 +17,7 @@ const informationRooms: BusinessLogic = async (req, res, next) => {
 }
 
 const createNewRoom: BusinessLogic = async (req, res, next) => {
-  const roomId = uuid.v4();
+  const roomId = v4();
   const user = await db.User.findOne({
     where: { email: req.email }
   });
