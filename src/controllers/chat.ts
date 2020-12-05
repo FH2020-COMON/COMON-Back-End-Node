@@ -30,7 +30,7 @@ const myInformation: BusinessLogic = async (req, res, next) => {
 }
 
 const createNewRoom: BusinessLogic = async (req, res, next) => {
-  const roomId = v4();
+  const roomId = v4();  
   const user = await db.User.findOne({
     where: { email: req.email }
   });
@@ -59,7 +59,8 @@ const addCompanyChat: BusinessLogic = async (req, res, next) => {
     chat: req.body.chat,
     createdAt: new Date(),
   });
-  req.app.get("io").of("/company").to(req.params.roomId).emit("chat", chat);
+  req.app.get("io").of("/company").in(req.params.roomId).emit("chat", chat);
+  console.log("chatting to ", req.params.roomId);
   res.status(200).send("ok");
 }
 
