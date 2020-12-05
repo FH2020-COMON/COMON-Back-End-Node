@@ -12,6 +12,7 @@ const informationRooms: BusinessLogic = async (req, res, next) => {
       order: ["createdAt"],
     },
   });
+  console.log(companyRooms);
   res.json(companyRooms);
 }
 
