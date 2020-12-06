@@ -44,8 +44,6 @@ const createNewRoom: BusinessLogic = async (req, res, next) => {
   });
   const io = req.app.get("io");
   const company: Socket = io.of("/company");
-  company.join(roomId);
-  company.emit("join Room", roomId);
   company.emit("newRoom", newRoom);
   res.status(200).send("ok");
 }
