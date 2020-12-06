@@ -12,8 +12,11 @@ const webSocket = (server: httpsServer | httpServer, app: Application, verifyTok
   const rtc: socketIO.Namespace = io.of("/rtc");
   const company: socketIO.Namespace = io.of("/company");
 
-  company .on("connection", (socket) => {
+  company.on("connection", (socket) => {
     socket.emit("connection", "hello");
+    socket.on("create room", () => {
+      
+    })
   });
 
   rtc.on('connection', (socket: Socket) => {
