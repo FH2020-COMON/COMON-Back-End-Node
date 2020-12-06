@@ -59,6 +59,7 @@ const sendDateApply: BusinessLogic = async (req, res, next) => {
 const applyCompanyList: BusinessLogic = async (req, res, next) => {
   const applications = await db.Application.findAll({
     where: { user_email: req.email },
+    include: { model: db.Company, },
     order: ["status"],
   });
   res.json(applications);
