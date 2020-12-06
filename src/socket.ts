@@ -4,6 +4,8 @@ import os from "os";
 import socketIO, { Socket } from 'socket.io';
 import { Application } from "express";
 import { BusinessLogic, NextFunction } from "./BusinessLogic";
+import { v4 } from "uuid";
+import { db } from "./models/index";
 
 const webSocket = (server: httpsServer | httpServer, app: Application, verifyToken: BusinessLogic) => {
   const io: socketIO.Server = socketIO(server);
@@ -14,9 +16,19 @@ const webSocket = (server: httpsServer | httpServer, app: Application, verifyTok
 
   company.on("connection", (socket) => {
     socket.emit("connection", "hello");
-    socket.on("create room", () => {
-      
-    })
+    socket.on("create room", async (room) => {
+      const roomId = v4();  
+      const user = await db.User.findOne({
+        where: { email: room.email }
+      });
+      const userCompanyId = user!.company_id;
+      db.Room.create({
+        title: room.title,
+        room_id: roomId,
+        company_id: userCompanyId!,
+      });
+      socket.join(roomId);
+    });
   });
 
   rtc.on('connection', (socket: Socket) => {
