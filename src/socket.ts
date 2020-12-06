@@ -17,11 +17,6 @@ const webSocket = (server: httpsServer | httpServer, app: Application, verifyTok
   });
 
   rtc.on('connection', (socket: Socket) => {
-    // 토큰 인증 미들웨어 베포 시에만 필요 
-    //io.use((socket: Socket, next: NextFunction) => {
-    //  verifyToken(socket.request, socket.request.res, next);
-    //});
-    
     function log(message: string) {
       socket.emit('log', message);
     }
