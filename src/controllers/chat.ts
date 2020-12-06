@@ -21,7 +21,7 @@ const myInformation: BusinessLogic = async (req, res, next) => {
     attributes: ["company_id"],
   });
   if(!(user!.company_id)) {
-    res.status(400).json({
+    return res.status(400).json({
       message: "Bad Request",
     });
   }
