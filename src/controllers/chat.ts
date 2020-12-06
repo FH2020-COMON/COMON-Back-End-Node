@@ -25,7 +25,7 @@ const myInformation: BusinessLogic = async (req, res, next) => {
       message: "Bad Request",
     });
   }
-   const company = await db.Company.findOne({
+  const company = await db.Company.findOne({
     where: { company_id: user!.company_id }
   });
   res.send(company!.company_name);
