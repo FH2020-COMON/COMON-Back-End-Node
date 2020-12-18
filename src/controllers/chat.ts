@@ -21,14 +21,16 @@ const myInformation: BusinessLogic = async (req, res, next) => {
     attributes: ["company_id"],
   });
   if(!(user!.company_id)) {
-    return res.status(400).json({
+    res.status(400).json({
       message: "Bad Request",
     });
   }
-  const company = await db.Company.findOne({
-    where: { company_id: user!.company_id }
-  });
-  res.send(company!.company_name);
+  else {
+    const company = await db.Company.findOne({
+      where: { company_id: user!.company_id }
+    });
+    res.send(company!.company_name);
+  }
 }
 
 const createNewRoom: BusinessLogic = async (req, res, next) => {
